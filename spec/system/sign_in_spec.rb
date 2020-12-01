@@ -7,7 +7,7 @@ RSpec.describe 'Login an existing user', type: :system do
 
   it 'Log me in' do
     visit '/'
-    #click_link 'Click here to log in'
+    
     sleep(2)
 
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
