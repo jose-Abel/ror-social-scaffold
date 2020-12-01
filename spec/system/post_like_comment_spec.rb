@@ -29,19 +29,12 @@ RSpec.describe 'A log in user creates an event, comments and likes it', type: :s
     content = find(:css, "input[id$='post_content']")
     content.fill_in with: 'Hello, this is my first post!'
 
-    #find("input[value='Comment']").click
-    #find("Comment").click
     find('input[name="commit"]').click
 
-
-    # within '#new_comment' do
-    #     find('input[name="commit"]').click
-    # end
     sleep(2)
 
     expect(page).to have_content 'Post was successfully created.'
 
-    
     content_comment = find(:css, "input[id$='comment_content']")
     content_comment.fill_in with: 'Amazing comment!!! <3'
     
@@ -52,9 +45,6 @@ RSpec.describe 'A log in user creates an event, comments and likes it', type: :s
     click_link 'Like!'
 
     sleep(2)
-
-
-
 
   end
 end
