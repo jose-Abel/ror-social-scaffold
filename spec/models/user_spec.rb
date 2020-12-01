@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User do
   describe 'Validation of User' do
-    subject { User.new(name: 'John', email: 'john@domain.com', password: 'password')}
+    subject { User.create(name: 'John', email: 'john@domain.com', password: 'password')}
 
     it 'should have many posts' do
       t = User.reflect_on_association(:posts)
@@ -41,12 +41,13 @@ RSpec.describe User do
       expect(subject.password).to_not be_empty()   
     end
 
-    it 'Ensure the password length is 8' do
-        expect(subject.password.length).to eq(8)
+    it 'Ensure the name length is less than 20' do
+      subject.name = "a" * 21
+        expect(subject.valid?).to_not eq(true)
     end
 
     it 'confirms count of users increase by 1' do
-        expect { subject.save() }.to change { User.count }.by(1)
+        expect { User.create(name: 'Johny', email: 'johny@domain.com', password: 'password') }.to change { User.count }.by(1)
     end
   end
 end
