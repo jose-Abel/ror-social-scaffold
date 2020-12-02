@@ -1,0 +1,11 @@
+<h1>Friends Requests</h1>
+
+<section class="users-section">
+	<%= @pending_arr.each do |pending| %>
+		<ul class="users-list">
+			<li>
+				Name: <%= pending %>
+			</li>
+		</ul>
+	<% end %>
+</section>

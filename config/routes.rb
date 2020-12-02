@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   devise_for :users
+  
   get "friends_list", to: "friendships#friends_list"
 
   get "peding_requests", to: "friendships#pending_requests"

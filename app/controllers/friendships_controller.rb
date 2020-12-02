@@ -2,14 +2,21 @@ class FriendshipsController < ApplicationController
 	def new; end
 
 	def create
-		friendship = Friendships.new(user_id: current_user.id, friend_id: params[:friend_id])
+		friendship = Friendship.new(user_id: current_user.id, friend_id: params[:format].to_i)
+
+		current_user.pending_friends.each do |pending_friend| 
+			
+			if pending_friend.id == params[:format].to_i
+				redirect_to users_path, alert: "You already sent a friend request to this user" and return
+			end
+		end
 
 		if friendship.save
 			flash[:notice] = "Your friend request has been sent!"
-			redirect_to friendships_path(params[:friend_id])
+			redirect_to users_path
 		else
 			flash[:alert] = friendship.errors_full_messages
-			redirect_to new_friendship_path
+			redirect_to users_paths
 		end
 	end
 
@@ -30,6 +37,7 @@ class FriendshipsController < ApplicationController
 	end
 
 	def pending_requests
-		@pending = current_user.pending_friends
+		@pending_arr = current_user.pending_friends.collect(&:name)
+
 	end
 end
