@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   get "friends_list", to: "friendships#friends_list"
 
-  get "peding_requests", to: "friendships#pending_requests"
+  get "pending_requests", to: "friendships#pending_requests"
 
   resources :friendships
 

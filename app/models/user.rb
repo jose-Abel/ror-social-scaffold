@@ -16,13 +16,13 @@ class User < ApplicationRecord
   def friends
     friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
 
-    friends_array + friends.map{|friendship| friendship.user if friendship.confirmed}
+    friends_array + inverted_friendships.map{|friendship| friendship.user if friendship.confirmed}
     
     friends_array.compact
   end
 
   def pending_friends
-    friendships.map{|friendship| friendship.friend if !friendship.confirmed}.compact
+    friendships.map{|friendship| friendship.friend if !friendship.confirmed}
   end
 
   def friend_requests

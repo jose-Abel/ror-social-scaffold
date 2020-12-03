@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
 	def new; end
 
 	def create
-		friendship = Friendship.new(user_id: current_user.id, friend_id: params[:format].to_i)
+		friendship = Friendship.new(user_id: current_user.id, friend_id: params[:format].to_i, confirmed: false)
 
 		current_user.pending_friends.each do |pending_friend| 
 			
@@ -37,7 +37,7 @@ class FriendshipsController < ApplicationController
 	end
 
 	def pending_requests
-		@pending_arr = current_user.pending_friends.collect(&:name)
-
+		# @pending_arr = current_user.pending_friends.collect(&:name)
+		@pending = current_user.pending_friends.map { |friend| friend.name }
 	end
 end
