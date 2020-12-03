@@ -2,9 +2,9 @@
   <li>
     Name: <%= user.name %>
     <span class="profile-link">
-      <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-      <% unless current_user.friend?(user) %>
-        <%= link_to 'Send invitation', friendships_path(user), method: :post, class: 'profile-link' %>
+      <%= link_to 'See Profile',  user_path(user), class: 'profile-link invit_btn' %>
+      <% unless current_user.friend?(user) || current_user.pending_friends.include?(user) %>
+        <%= link_to 'Send invitation', friendships_path(user), method: :post, class: 'profile-link invit_btn' %>
       <% end %>
     </span>
   </li>

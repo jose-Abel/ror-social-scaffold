@@ -6,9 +6,9 @@
 			<li>
 			Name: <%= friend.name %>
 			<span class="profile-link">
-			  <%= link_to 'See Profile',  user_path(friend.id), class: 'profile-link' %>
-			  <%= link_to 'Accept friend request', friendship_path(friend.id), method: :put, class: 'profile-link' %>
-			  <%= link_to 'Reject friend request', friendship_path(friend.id), method: :delete, class: 'profile-link' %> 
+			  <%= link_to 'See Profile',  user_path(friend.id), class: 'profile-link invit_btn' %>
+			  <%= link_to 'Accept friend request', friendship_path(friend.id), method: :put, class: 'profile-link accept_btn' %>
+			  <%= link_to 'Reject friend request', friendship_path(friend.id), method: :delete, class: 'profile-link reject_btn' %> 
 			</span>
 		  </li>
 		<% end %>
