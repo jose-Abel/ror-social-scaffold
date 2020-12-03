@@ -2,16 +2,22 @@ class FriendshipsController < ApplicationController
 	def new; end
 
 	def create
-		friendship = Friendship.new(user_id: current_user.id, friend_id: params[:format].to_i, confirmed: false)
+		user = User.find_by(id: params[:format].to_i)
+
+		friendship = Friendship.new(user_id: current_user.id, friend_id: user.id, confirmed: false)
+
+		if current_user.friend?(user)
+			redirect_to users_path, alert: "You two are already friends!" and return
+		end
 
 		current_user.pending_friends.each do |pending_friend| 
 			
-			if pending_friend.id == params[:format].to_i
+			if pending_friend.id == user.id
 				redirect_to users_path, alert: "You already sent a friend request to this user" and return
 			end
 		end
 
-		if current_user.id == params[:format].to_i
+		if current_user.id == user.id
 			redirect_to users_path, alert: "Sorry, on this app you're not able to befriend yourself" and return
 		end
 
