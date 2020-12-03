@@ -18,8 +18,12 @@
           <%= menu_link_to 'All users', users_path %>
         </div>
         <div class="menu-item">
-        <%= menu_link_to 'All friends requests', pending_requests_path %>
-      </div>
+          <%= menu_link_to 'Se all your pending requests', pending_requests_path %>
+        </div>
+        <div class="menu-item">
+          <%= menu_link_to 'See all your friends requests', friends_requests_path %>
+        </div>
+
       </div>
       <% if current_user %>
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>

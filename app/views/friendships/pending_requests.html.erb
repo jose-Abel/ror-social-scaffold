@@ -1,11 +1,13 @@
-<h1>Friends Requests</h1>
+<h1>Pending Requests</h1>
 
 <section class="users-section">
 	<ul class="users-list">
 		<% @pending.each do |friend| %>
-			<li>
-				Name: <%= friend %>	
-			</li>
+			<% if !friend.nil? %>
+				<li>
+					Name: <%= friend.name %>	
+				</li>
+			<% end %>
 		<% end %>
   </ul>
 </section>

@@ -1,3 +1,4 @@
+<% unless current_user == user %>
 <li>
   Name: <%= user.name %>
   <span class="profile-link">
@@ -5,3 +6,4 @@
     <%= link_to 'Send invitation', friendships_path(user), method: :post, class: 'profile-link' %>
   </span>
 </li>
+<% end %>

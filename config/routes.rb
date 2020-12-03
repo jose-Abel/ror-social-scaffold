@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get "pending_requests", to: "friendships#pending_requests"
 
+  get "friends_requests", to: "friendships#friends_requests"
+
   resources :friendships
 
   resources :users, only: [:index, :show]

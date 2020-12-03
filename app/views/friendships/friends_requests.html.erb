@@ -1,0 +1,18 @@
+<h1>Friends Requests</h1>
+
+<section class="users-section">
+	<ul class="users-list">
+		<% @requests.each do |friend| %>
+			<li>
+			Name: <%= friend.name %>
+			<span class="profile-link">
+			  <%= link_to 'See Profile',  user_path(friend.id), class: 'profile-link' %>
+			  <%= link_to 'Accept friend request', friendship_path(friend.id), method: :put, class: 'profile-link' %>
+			  <%= link_to 'Reject friend request', friendship_path(friend.id), method: :delete, class: 'profile-link' %> 
+			</span>
+		  </li>
+		<% end %>
+  </ul>
+</section>
+
+
