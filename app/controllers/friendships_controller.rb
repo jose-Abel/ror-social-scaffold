@@ -1,3 +1,7 @@
+# rubocop : disable Metrics/PerceivedComplexity
+# rubocop : disable Metrics/CyclomaticComplexity
+# rubocop : disable Lint/NonLocalExitFromIterator
+
 class FriendshipsController < ApplicationController
   def new; end
 
@@ -20,11 +24,11 @@ class FriendshipsController < ApplicationController
 
     if friendship.save
       flash[:notice] = 'Your friend request has been sent!'
-      redirect_to users_path
     else
       flash[:alert] = friendship.errors_full_messages
-      redirect_to users_path
     end
+
+    redirect_to users_path
   end
 
   def edit; end
@@ -38,11 +42,11 @@ class FriendshipsController < ApplicationController
 
     if current_user.friend?(user)
       flash[:notice] = 'Awesome, you two are now friends!'
-      redirect_to users_path
     else
       flash[:alert] = "There were some errors that didn't allow you two become friends"
-      redirect_to users_path
     end
+
+    redirect_to users_path
   end
 
   def show
@@ -55,11 +59,11 @@ class FriendshipsController < ApplicationController
 
     if current_user.friend?(user)
       flash[:alert] = "There were some errors that didn't allow this rejection to go through"
-      redirect_to users_path
     else
       flash[:notice] = 'You rejected this friendship successfully'
-      redirect_to users_path
     end
+
+    redirect_to users_path
   end
 
   def friends_list
@@ -74,3 +78,7 @@ class FriendshipsController < ApplicationController
     @requests = current_user.friend_requests.map { |friend| friend }
   end
 end
+
+# rubocop : enable Metrics/PerceivedComplexity
+# rubocop : enable Metrics/CyclomaticComplexity
+# rubocop : enable Lint/NonLocalExitFromIterator

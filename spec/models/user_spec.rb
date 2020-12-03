@@ -47,7 +47,7 @@ RSpec.describe User do
     end
 
     it 'confirms count of users increase by 1' do
-      expect { User.create(name: 'Johny', email: 'johny@domain.com', password: 'password') }.to change { User.count }.by(1)
+      expect { User.create(name: 'John', email: 'john@me.com', password: 'passor') }.to change { User.count }.by(1)
     end
   end
 end
