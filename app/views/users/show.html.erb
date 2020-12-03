@@ -1,6 +1,6 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-  <% unless current_user.friend?(@user) %>
+  <% unless current_user.friend?(@user) || current_user.pending_friends.include?(@user) %>
     <%= link_to 'Send invitation', friendships_path(@user), method: :post, class: 'profile-link' %>
   <% end %>
   <article class="timeline">

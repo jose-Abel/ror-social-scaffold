@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Registration of a new user', type: :system do
   it 'Register a new' do
     visit '/'
-    
+
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
 
     click_link 'Sign up'
@@ -20,7 +20,6 @@ RSpec.describe 'Registration of a new user', type: :system do
     password = find(:css, "input[id$='user_password']")
     password.fill_in with: 'password'
 
-    
     password_conf = find(:css, "input[id$='user_password_confirmation']")
     password_conf.fill_in with: 'password'
     sleep(2)

@@ -22,12 +22,10 @@ class PostsController < ApplicationController
   def timeline_posts
     ids = current_user.friends.pluck(:id)
     ids.push(current_user.id)
-    @timeline_posts ||= Post.where(user_id: ids) 
-    
+    @timeline_posts ||= Post.where(user_id: ids)
   end
 
   def post_params
     params.require(:post).permit(:content)
   end
-
 end

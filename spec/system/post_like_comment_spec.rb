@@ -7,7 +7,7 @@ RSpec.describe 'A log in user creates an event, comments and likes it', type: :s
 
   it 'Log me in' do
     visit '/'
-    
+
     sleep(2)
 
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
@@ -37,14 +37,13 @@ RSpec.describe 'A log in user creates an event, comments and likes it', type: :s
 
     content_comment = find(:css, "input[id$='comment_content']")
     content_comment.fill_in with: 'Amazing comment!!! <3'
-    
+
     find("input[value='Comment']").click
-    
+
     sleep(2)
-   
+
     click_link 'Like!'
 
     sleep(2)
-
   end
 end
