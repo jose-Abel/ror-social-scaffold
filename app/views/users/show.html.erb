@@ -1,6 +1,6 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-  <% if is_pending?(current_user, @user) %>
+  <% if pending?(current_user, @user) %>
     <span> Pending Invite </span>
   <% elsif are_inverted_friends?(current_user, @user) %>
     <span> 

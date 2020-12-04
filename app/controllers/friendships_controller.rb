@@ -13,11 +13,10 @@ class FriendshipsController < ApplicationController
     redirect_to users_path, alert: 'You two are already friends!' and return if current_user.friend?(user)
 
     current_user.pending_friends.each do |pending_friend|
-      unless pending_friend.nil?
-        if pending_friend.id == user.id
-          redirect_to users_path, alert: 'You already sent a friend request to this user' and return
-        end
-      end
+      next if pending_friend.nil?
+      next unless pending_friend.id == user.id
+
+      redirect_to users_path, alert: 'You already sent a friend request to this user' and return
     end
 
     if current_user.id == user.id
