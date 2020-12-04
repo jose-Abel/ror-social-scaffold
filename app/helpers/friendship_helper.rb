@@ -1,5 +1,5 @@
 module FriendshipHelper
-    def friend_nil?(friend)
-        friend.nil?
-    end
+  def friend_nil?(friend)
+    friend.nil?
+  end
 end
