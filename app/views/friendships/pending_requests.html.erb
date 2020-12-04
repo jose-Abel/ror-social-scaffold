@@ -3,7 +3,7 @@
 <section class="users-section">
 	<ul class="users-list">
 		<% @pending.each do |friend| %>
-			<% unless friend.nil? %>
+			<% unless friend_nil?(friend) %>
 				<li>
 					Name: <%= friend.name %>	
 				</li>
