@@ -70,8 +70,13 @@ Open `http://localhost:3000/` in your browser.
 TBA
 
 ## Authors
+### Author
+- 👤GitHub: [Jose Abel Ramirez](https://github.com/jose-Abel)
+- Linkedin: [Jose Abel Ramirez Frontany](https://www.linkedin.com/in/jose-abel-ramirez-frontany-7674a842/)
 
-TBA
+### Author
+- 👤GitHub: [Guillain Bisimwa](https://github.com/guillainbisimwa)
+- Linkedin: [Guillain Bisimwa](https://www.linkedin.com/in/guillain-bisimwa-8a8b7a7b/)
 
 ## 🤝 Contributing
 
