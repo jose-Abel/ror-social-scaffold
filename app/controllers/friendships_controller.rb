@@ -1,7 +1,3 @@
-# rubocop : disable Metrics/PerceivedComplexity
-# rubocop : disable Metrics/CyclomaticComplexity
-# rubocop : disable Lint/NonLocalExitFromIterator
-
 class FriendshipsController < ApplicationController
   def new; end
 
@@ -37,16 +33,16 @@ class FriendshipsController < ApplicationController
   def update
     user = User.find_by(id: params[:id].to_i)
 
-    #redirect_to users_path, alert: 'You two are already friends!' and return if current_user.friend?(user)
+    # redirect_to users_path, alert: 'You two are already friends!' and return if current_user.friend?(user)
 
-    #current_user.confirm_friend(user)
-    #friendship = Friendship.new(user_id: current_user.id, friend_id: user.id, confirmed: true)
+    # current_user.confirm_friend(user)
+    # friendship = Friendship.new(user_id: current_user.id, friend_id: user.id, confirmed: true)
     friendship = Friendship.find(params[:id].to_i)
-    
+
     friendship.update_attributes(confirmed: true)
-    
+
     friendship_2 = Friendship.new(user_id: friendship.friend_id, friend_id: friendship.user_id, confirmed: true)
-    
+
     if friendship_2.save
       flash[:notice] = 'Friend request has been accepted!'
     else
@@ -58,7 +54,7 @@ class FriendshipsController < ApplicationController
     # else
     #   flash[:alert] = "There were some errors that didn't allow you two become friends"
     # end
-    #byebug
+    # byebug
 
     redirect_to users_path
   end
@@ -68,34 +64,24 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(id: params[:id].to_i)
-    current_user.reject_friend(user)
-
-    if current_user.friend?(user)
-      flash[:alert] = "There were some errors that didn't allow this rejection to go through"
-    else
-      flash[:notice] = 'You rejected this friendship successfully'
-    end
+    Friendship.find(params[:id]).destroy
+    flash[:notice] = 'You rejected this friendship successfully'
 
     redirect_to users_path
   end
 
   def friends_list
-    #@all_friends = current_user.friends
-    @all_user = User.all
+    @all_user = User.reject { |x| x.id == current_user.id }
   end
 
   def pending_requests
-    #@pending = current_user.pending_friends.map { |friend| friend }
-    @all_user = User.all
+    # @pending = current_user.pending_friends.map { |friend| friend }
+    # @all_user = User.all
+    @all_user = User.reject { |x| x.id == current_user.id }
   end
 
   def friends_requests
-    #@requests = current_user.friend_requests.map { |friend| friend }
+    # @requests = current_user.friend_requests.map { |friend| friend }
     @all_user = User.all
   end
 end
-
-# rubocop : enable Metrics/PerceivedComplexity
-# rubocop : enable Metrics/CyclomaticComplexity
-# rubocop : enable Lint/NonLocalExitFromIterator
