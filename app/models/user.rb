@@ -24,4 +24,10 @@ class User < ApplicationRecord
   def pending_requests
     friendships.map { |fs| fs.friend unless fs.confirmed }.compact
   end
+
+  def friends_and_own_posts
+    ids = self.friends.pluck(:id)
+    ids.push(self.id)
+    posts = Post.where(user_id: ids)
+  end
 end
