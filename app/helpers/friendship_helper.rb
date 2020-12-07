@@ -12,6 +12,7 @@ module FriendshipHelper
     return "send_invit" if friendship_status1 == nil && friendship_status2 == nil
     return "pending" if friendship_status1 == nil && friendship_status2.confirmed == false
     return ["Accecp_reject", friendship_status1 ] if friendship_status1.confirmed == false && friendship_status2 == nil
+    return "friends" if friendship_status1.confirmed == true && friendship_status2.confirmed == true
     return friendship_status1
 
   end

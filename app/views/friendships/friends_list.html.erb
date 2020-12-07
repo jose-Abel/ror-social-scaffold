@@ -2,10 +2,17 @@
 
 <section class="users-section">
 	<ul class="users-list">
-		<% @all_friends.each do |friend| %>
-			<li>
-			Name: <%= friend.name %>
-			</li>
+		<% @all_user.each do |friend| %>
+			<% unless current_user == friend %>
+				<li>
+
+					<% if friendship_check(current_user, friend) == "friends" %>
+							Name: <%= friend.name %>
+							<%= link_to 'See Profile',  user_path(friend), class: 'profile-link invit_btn' %>
+					<% end %>
+				</li>
+			<% end %>
 		<% end %>
 	</ul>
 </section>
+
