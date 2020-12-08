@@ -11,6 +11,14 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverted_friendships, class_name: 'Friendship', foreign_key: :friend_id
 
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "user_id" 
+  
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+
+  has_many :friendships_requests, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "friend_id" 
+  
+  has_many :friend_requests, through: :friendships_requests, source: :user
+
   def friends
     friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
 
@@ -23,11 +31,11 @@ class User < ApplicationRecord
     Post.where(user_id: ids)
   end
 
-  def friend_requests
-    inverted_friendships.map { |fs| fs.user unless fs.confirmed }.compact
-  end
+  # def friend_requests
+  #   inverted_friendships.map { |fs| fs.user unless fs.confirmed }.compact
+  # end
 
-  def pending_requests
-    friendships.map { |fs| fs.friend unless fs.confirmed }.compact
-  end
+  # def pending_requests
+  #   friendships.map { |fs| fs.friend unless fs.confirmed }.compact
+  # end
 end

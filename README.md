@@ -37,14 +37,6 @@ Setup database with:
    rails db:migrate
 ```
 
-Download google chrome if don't have it to run Capybara
-
-```
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-    sudo apt install ./google-chrome-stable_current_amd64.deb
-```
-
 ### Github Actions
 
 To make sure the linters' checks using Github Actions work properly, you should follow the next steps:
@@ -66,6 +58,15 @@ Start server with:
 Open `http://localhost:3000/` in your browser.
 
 ### Run tests
+
+Download google chrome if don't have it to run Capybara
+
+```
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+	sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
 
 ```
     rpsec --format documentation
