@@ -69,7 +69,7 @@ Open `http://localhost:3000/` in your browser.
 
 ```
     rpsec --format documentation
-``
+```
 
 ### Deployment
 
