@@ -29,6 +29,12 @@ Instal gems with:
 bundle install
 ```
 
+Run
+
+```
+yarn install
+```
+
 Setup database with:
 
 ```
@@ -57,7 +63,8 @@ Open `http://localhost:3000/` in your browser.
 
 ### Run tests
 
-Download google chrome if don't have it to run Capybara
+Download and install google chrome if don't have it to run Capybara.
+Capybara needs the web drivers to run system tests with browsers
 
 ```
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -66,7 +73,7 @@ Download google chrome if don't have it to run Capybara
 ```
 
 ```
-    rpsec --format documentation
+    rspec --format documentation
 ```
 
 ### Deployment
