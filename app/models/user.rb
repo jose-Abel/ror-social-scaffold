@@ -30,12 +30,4 @@ class User < ApplicationRecord
     ids.push(id)
     Post.where(user_id: ids)
   end
-
-  # def friend_requests
-  #   inverted_friendships.map { |fs| fs.user unless fs.confirmed }.compact
-  # end
-
-  # def pending_requests
-  #   friendships.map { |fs| fs.friend unless fs.confirmed }.compact
-  # end
 end

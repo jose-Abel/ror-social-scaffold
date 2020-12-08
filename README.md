@@ -11,7 +11,6 @@
 
 TBA
 
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -46,7 +45,6 @@ To make sure the linters' checks using Github Actions work properly, you should 
 3. Start working on your milestone as usual.
 4. Open a PR from the `feature/branch` when your work is done.
 
-
 ### Usage
 
 Start server with:
@@ -67,7 +65,6 @@ Download google chrome if don't have it to run Capybara
 	sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
-
 ```
     rpsec --format documentation
 ```
@@ -77,11 +74,14 @@ Download google chrome if don't have it to run Capybara
 TBA
 
 ## Authors
+
 ### Author
+
 - 👤GitHub: [Jose Abel Ramirez](https://github.com/jose-Abel)
 - Linkedin: [Jose Abel Ramirez Frontany](https://www.linkedin.com/in/jose-abel-ramirez-frontany-7674a842/)
 
 ### Author
+
 - 👤GitHub: [Guillain Bisimwa](https://github.com/guillainbisimwa)
 - Linkedin: [Guillain Bisimwa](https://www.linkedin.com/in/guillain-bisimwa-8a8b7a7b/)
 
@@ -102,4 +102,3 @@ TBA
 ## 📝 License
 
 TBA
-
