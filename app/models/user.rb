@@ -23,8 +23,6 @@ class User < ApplicationRecord
     Post.where(user_id: ids)
   end
 
-  private
-
   def friend_requests
     inverted_friendships.map { |fs| fs.user unless fs.confirmed }.compact
   end
