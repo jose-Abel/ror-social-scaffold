@@ -3,15 +3,13 @@
     Name: <%= user.name %>
     <span class="profile-link">
       <%= link_to 'See Profile',  user_path(user), class: 'profile-link invit_btn' %>
-      <% if pending?(current_user, user) %>
-        <span>Pending Invite</span>
-      <% elsif are_inverted_friends?(current_user, user) %>
-        <span> 
-          <%= link_to 'Accept Friendship', friendship_path(user.id), method: :put, class: 'profile-link accept_btn' %>
-			    <%= link_to 'Reject Friendship', friendship_path(user.id), method: :delete, class: 'profile-link reject_btn' %>
-        </span>
-      <% elsif are_friends?(current_user, user) %>
-        <%= link_to 'Send invitation', friendships_path(user), method: :post, class: 'profile-link invit_btn' %>        
+      <% if friendship_check(current_user, user)[0] == "Accept_reject" %>
+        <%= link_to 'Accept Friendship', friendship_path(friendship_check(current_user, user)[1].id), method: :put, class: 'profile-link accept_btn' %>
+		    <%= link_to 'Reject Friendship', friendship_path(friendship_check(current_user, user)[1].id), method: :delete, class: 'profile-link reject_btn' %>
+      <% elsif friendship_check(current_user, user) == "pending" %>
+         <span>Pending Invite</span>
+      <% elsif friendship_check(current_user, user) == "send_invite" %>
+        <%= link_to 'Send invitation', friendships_path(user), method: :post, class: 'profile-link invit_btn' %>
       <% end %>
     </span>
   </li>

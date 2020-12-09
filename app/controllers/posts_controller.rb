@@ -20,9 +20,7 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    ids = current_user.friends.pluck(:id)
-    ids.push(current_user.id)
-    @timeline_posts ||= Post.where(user_id: ids)
+    @timeline_posts ||= current_user.friends_and_own_posts
   end
 
   def post_params

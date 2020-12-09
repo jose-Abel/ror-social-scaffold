@@ -31,7 +31,7 @@ RSpec.describe 'A log in user send and invitation and an other user accepts it',
 
     sleep(2)
 
-    expect(page).to have_content 'Your friend request has been sent!'
+    expect(page).to have_content 'Your friendship request has been sent!'
 
     sleep(2)
 
@@ -55,11 +55,11 @@ RSpec.describe 'A log in user send and invitation and an other user accepts it',
 
     expect(page).to have_content 'Signed in successfully.'
     visit '/friends_requests'
-    click_link 'Accept friend request'
+    click_link 'Accept Friendship'
 
     sleep(2)
 
-    expect(page).to have_content 'Awesome, you two are now friends!'
+    expect(page).to have_content 'Friend request has been accepted!'
     visit '/friends_list'
     expect(page).to_not have_content 'Error!'
 
