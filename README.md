@@ -9,7 +9,7 @@
 
 ## Live Demo
 
-TBA
+[live demo](https://guillain-jose-social-media-app.herokuapp.com/)
 
 ## Getting Started
 
