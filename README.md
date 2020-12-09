@@ -66,19 +66,34 @@ Open `http://localhost:3000/` in your browser.
 Download and install google chrome if don't have it to run Capybara.
 Capybara needs the web drivers to run system tests with browsers
 
+``` 
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  sudo apt install ./google-chrome-stable_current_amd64.deb
+	
 ```
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-	sudo apt install ./google-chrome-stable_current_amd64.deb
-```
+``` 
+  rspec --format documentation
 
-```
-    rspec --format documentation
 ```
 
 ### Deployment
 
-https://guillain-jose-social-media-app.herokuapp.com/
+Steps to deploy to Heroku run in the console the following commands:
+
+```
+  heroku login -i
+
+  <login with your Heroku credentials>
+
+  heroku create
+
+  heroku rename <the name you want for your app>
+
+  heroku run rails db:migrate
+
+```
+After the previous steps, make sure you add your database password to your Heroku environment variables with the key-value pairs being the key locate in config/database.yml and the value the password you set up.
 
 ## Authors
 
@@ -104,8 +119,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
-
-## 📝 License
-
-TBA
+Appreciate thanks to the Ruby Team, the teams maintaining the gems for Rails and all gems used on this project, and a special acknowledgment and appreciation to Microverse for pushing us further to increase our knowledge and because of that we can consider ourselves now Rails Juniors :).
