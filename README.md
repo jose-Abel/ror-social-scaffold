@@ -119,4 +119,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-Appreciate thanks to the Ruby Team, the teams maintaining the gems for Rails and all gems used on this project, and a special acknowledgment and appreciation to Microverse for pushing us further to increase our knowledge and because of that we can consider ourselves now Rails Juniors :).
+A special thanks to the Ruby Team, the teams maintaining the gems for Rails and all gems used on this project, and a special acknowledgment and appreciation to Microverse for pushing us further to increase our knowledge and because of that we can consider ourselves now Rails Juniors :).
