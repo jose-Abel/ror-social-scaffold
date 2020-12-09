@@ -1,0 +1,14 @@
+<h1>Pending Requests</h1>
+
+<section class="users-section">
+	<ul class="users-list">
+		<% @all_user.each do |friend| %>
+			<% if friendship_check(current_user, friend) == "pending" %>
+				<li> 
+				Name: 
+				<%= friend.name %>
+				<span class="profile-link"> Pending Invite</span></li>
+			<% end %>
+		<% end %>
+  </ul>
+</section>

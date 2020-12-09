@@ -1,0 +1,15 @@
+<h1>My Friends</h1>
+
+<section class="users-section">
+	<ul class="users-list">
+		<% @all_user.each do |friend| %>
+			<li>
+				<% if friendship_check(current_user, friend) == "friends" %>
+					Name: <%= friend.name %>
+					<%= link_to 'See Profile',  user_path(friend), class: 'profile-link invit_btn' %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+</section>
+

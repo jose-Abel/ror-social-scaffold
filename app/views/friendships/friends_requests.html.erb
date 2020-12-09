@@ -1,0 +1,17 @@
+<h1>Friends Requests</h1>
+
+<section class="users-section">
+	<ul class="users-list">
+		<% @all_user.each do |friend| %>
+			<li>
+				<% if friendship_check(current_user, friend)[0] == "Accept_reject" %>
+					Name: <%= friend.name %>
+					<%= link_to 'Accept Friendship', friendship_path(friendship_check(current_user, friend)[1].id), method: :put, class: 'profile-link accept_btn' %>
+					<%= link_to 'Reject Friendship', friendship_path(friendship_check(current_user, friend)[1].id), method: :delete, class: 'profile-link reject_btn' %>
+				<% end %>
+			</li>
+		<% end %>
+  </ul>
+</section>
+
+
