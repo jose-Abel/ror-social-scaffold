@@ -1,7 +1,7 @@
 # rubocop : disable Lint/UselessAssignment
 
 class FriendshipsController < ApplicationController
-  before_action :authenticate_user!  
+  before_action :authenticate_user!
 
   def new; end
 
