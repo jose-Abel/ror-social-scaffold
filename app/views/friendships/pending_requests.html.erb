@@ -2,11 +2,12 @@
 
 <section class="users-section">
 	<ul class="users-list">
-		<% @pending.each do |friend| %>
-			<% unless friend_nil?(friend) %>
-				<li>
-					Name: <%= friend.name %>	
-				</li>
+		<% @all_user.each do |friend| %>
+			<% if friendship_check(current_user, friend) == "pending" %>
+				<li> 
+				Name: 
+				<%= friend.name %>
+				<span class="profile-link"> Pending Invite</span></li>
 			<% end %>
 		<% end %>
   </ul>

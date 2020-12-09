@@ -29,6 +29,16 @@ RSpec.describe User do
       expect(t.macro).to eq(:has_many)
     end
 
+    it 'should have many pending friendships' do
+      t = User.reflect_on_association(:pending_friendships)
+      expect(t.macro).to eq(:has_many)
+    end
+
+    it 'should have many pending friends' do
+      t = User.reflect_on_association(:pending_friends)
+      expect(t.macro).to eq(:has_many)
+    end
+
     it 'confirms the name of the new user' do
       expect(subject.name).to eq('John')
     end

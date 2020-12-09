@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -13,34 +11,23 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverted_friendships, class_name: 'Friendship', foreign_key: :friend_id
 
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'user_id'
+
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+
+  has_many :friendships_requests, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
+
+  has_many :friend_requests, through: :friendships_requests, source: :user
+
   def friends
     friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
-
-    friends_array.concat(inverted_friendships.map { |friendship| friendship.user if friendship.confirmed })
 
     friends_array.compact
   end
 
-  def pending_friends
-    friendships.map { |friendship| friendship.friend unless friendship.confirmed }
-  end
-
-  def friend_requests
-    inverted_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
-  end
-
-  def confirm_friend(user)
-    friendship = inverted_friendships.find { |fship| fship.user == user }
-    friendship.confirmed = true
-    friendship.save
-  end
-
-  def reject_friend(user)
-    friendship = inverted_friendships.find { |fship| fship.user == user }
-    friendship.destroy
-  end
-
-  def friend?(user)
-    friends.include?(user)
+  def friends_and_own_posts
+    ids = friends.pluck(:id)
+    ids.push(id)
+    Post.where(user_id: ids)
   end
 end

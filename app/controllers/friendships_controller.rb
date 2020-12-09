@@ -1,6 +1,4 @@
-# rubocop : disable Metrics/PerceivedComplexity
-# rubocop : disable Metrics/CyclomaticComplexity
-# rubocop : disable Lint/NonLocalExitFromIterator
+# rubocop : disable Lint/UselessAssignment
 
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!  
@@ -12,21 +10,12 @@ class FriendshipsController < ApplicationController
 
     friendship = Friendship.new(user_id: current_user.id, friend_id: user.id, confirmed: false)
 
-    redirect_to users_path, alert: 'You two are already friends!' and return if current_user.friend?(user)
-
-    current_user.pending_friends.each do |pending_friend|
-      next if pending_friend.nil?
-      next unless pending_friend.id == user.id
-
-      redirect_to users_path, alert: 'You already sent a friend request to this user' and return
-    end
-
     if current_user.id == user.id
       redirect_to users_path, alert: "Sorry, on this app you're not able to befriend yourself" and return
     end
 
     if friendship.save
-      flash[:notice] = 'Your friend request has been sent!'
+      flash[:notice] = 'Your friendship request has been sent!'
     else
       flash[:alert] = friendship.errors_full_messages
     end
@@ -39,14 +28,16 @@ class FriendshipsController < ApplicationController
   def update
     user = User.find_by(id: params[:id].to_i)
 
-    redirect_to users_path, alert: 'You two are already friends!' and return if current_user.friend?(user)
+    friendship = Friendship.find(params[:id].to_i)
 
-    current_user.confirm_friend(user)
+    friendship.update_attributes(confirmed: true)
 
-    if current_user.friend?(user)
-      flash[:notice] = 'Awesome, you two are now friends!'
+    friendship2 = Friendship.new(user_id: friendship.friend_id, friend_id: friendship.user_id, confirmed: true)
+
+    if friendship2.save
+      flash[:notice] = 'Friend request has been accepted!'
     else
-      flash[:alert] = "There were some errors that didn't allow you two become friends"
+      flash[:alert] = friendship.errors_full_messages
     end
 
     redirect_to users_path
@@ -57,31 +48,25 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(id: params[:id].to_i)
-    current_user.reject_friend(user)
-
-    if current_user.friend?(user)
-      flash[:alert] = "There were some errors that didn't allow this rejection to go through"
-    else
-      flash[:notice] = 'You rejected this friendship successfully'
-    end
+    Friendship.find(params[:id]).destroy
+    flash[:notice] = 'You rejected this friendship successfully'
 
     redirect_to users_path
   end
 
   def friends_list
-    @all_friends = current_user.friends
+    @all_user = User.all
+    @all_user = @all_user.reject { |x| x.id == current_user.id }
   end
 
   def pending_requests
-    @pending = current_user.pending_friends.map { |friend| friend }
+    @all_user = User.all
+    @all_user = @all_user.reject { |x| x.id == current_user.id }
   end
 
   def friends_requests
-    @requests = current_user.friend_requests.map { |friend| friend }
+    @all_user = User.all
   end
 end
 
-# rubocop : enable Metrics/PerceivedComplexity
-# rubocop : enable Metrics/CyclomaticComplexity
-# rubocop : enable Lint/NonLocalExitFromIterator
+# rubocop : enable Lint/UselessAssignment

@@ -11,7 +11,6 @@
 
 TBA
 
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -30,6 +29,12 @@ Instal gems with:
 bundle install
 ```
 
+Run
+
+```
+yarn install
+```
+
 Setup database with:
 
 ```
@@ -46,7 +51,6 @@ To make sure the linters' checks using Github Actions work properly, you should 
 3. Start working on your milestone as usual.
 4. Open a PR from the `feature/branch` when your work is done.
 
-
 ### Usage
 
 Start server with:
@@ -59,11 +63,18 @@ Open `http://localhost:3000/` in your browser.
 
 ### Run tests
 
+Download and install google chrome if don't have it to run Capybara.
+Capybara needs the web drivers to run system tests with browsers
+
 ```
-    rpsec --format documentation
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+	sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
+```
+    rspec --format documentation
+```
 
 ### Deployment
 
@@ -71,7 +82,15 @@ TBA
 
 ## Authors
 
-TBA
+### Author
+
+- 👤GitHub: [Jose Abel Ramirez](https://github.com/jose-Abel)
+- Linkedin: [Jose Abel Ramirez Frontany](https://www.linkedin.com/in/jose-abel-ramirez-frontany-7674a842/)
+
+### Author
+
+- 👤GitHub: [Guillain Bisimwa](https://github.com/guillainbisimwa)
+- Linkedin: [Guillain Bisimwa](https://www.linkedin.com/in/guillain-bisimwa-8a8b7a7b/)
 
 ## 🤝 Contributing
 
@@ -90,4 +109,3 @@ TBA
 ## 📝 License
 
 TBA
-
